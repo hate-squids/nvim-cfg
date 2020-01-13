@@ -3,13 +3,17 @@ Plug 'scrooloose/nerdTree'		" NERDTree - file manager
 Plug 'bling/vim-airline'		" status line
 Plug 'rainglow/vim'			" alot of colorschemes
 Plug 'junegunn/fzf.vim'			" Fuzzy finder
+Plug 'junegunn/limelight.vim'		" Fuzzy finder
 Plug 'jiangmiao/auto-pairs'		" matching paired quotes 
 Plug 'aserebryakov/vim-todo-lists' 	" todo lists
+Plug 'tomtom/tcomment_vim'		" universal commenter
+" TODO: vim-sandwich
 " python
 Plug 'Vimjas/vim-python-pep8-indent'	" pep-styled indents
 Plug 'davidhalter/jedi'			" jedi
-Plug 'integralist/vim-mypy'			" jedi
+Plug 'integralist/vim-mypy'	
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'stephpy/vim-yaml'
 call plug#end()
 
 set number
@@ -23,10 +27,17 @@ set hidden
 set nobackup
 set nowritebackup
 set cmdheight=2
-set updatetime=300
+set updatetime=500
 set shortmess+=c
 set signcolumn=yes
 
+filetype plugin indent on
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+autocmd	CursorHold,CursorHoldI * update
+
+nnoremap <C-p> :FZF<CR>
+nnoremap <C-t> :tabnew<CR>
 " coc
 inoremap <silen><expr> <Tab>
 	\ pumvisible() ? "\<C-n>":
