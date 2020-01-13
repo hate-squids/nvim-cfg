@@ -31,6 +31,7 @@ set guioptions-=T
 set hidden
 set nobackup
 set nowritebackup
+set scrolloff=10
 set cmdheight=2
 set updatetime=500
 set shortmess+=c
