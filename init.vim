@@ -1,18 +1,23 @@
 call plug#begin()
-Plug 'scrooloose/nerdTree'		" NERDTree - file manager
-Plug 'bling/vim-airline'		" status line
-Plug 'rainglow/vim'			" alot of colorschemes
-Plug 'junegunn/fzf.vim'			" Fuzzy finder
-Plug 'junegunn/limelight.vim'		" Fuzzy finder
-Plug 'jiangmiao/auto-pairs'		" matching paired quotes 
-Plug 'aserebryakov/vim-todo-lists' 	" todo lists
-Plug 'tomtom/tcomment_vim'		" universal commenter
+Plug 'scrooloose/nerdTree'				" NERDTree - file manager
+Plug 'bling/vim-airline'				" status line
+Plug 'rainglow/vim'						" alot of colorschemes
+Plug 'junegunn/fzf.vim'					" Fuzzy finder
+Plug 'junegunn/limelight.vim'			" Partial document hilighting
+Plug 'jiangmiao/auto-pairs'				" matching paired quotes 
+Plug 'aserebryakov/vim-todo-lists' 		" todo lists
+Plug 'tomtom/tcomment_vim'				" universal commenter
+Plug 'morhetz/gruvbox'					" color sheme
+Plug 'blueyed/vim-diminactive'          " inactive buffer shading
 " TODO: vim-sandwich
+
 " python
 Plug 'Vimjas/vim-python-pep8-indent'	" pep-styled indents
-Plug 'davidhalter/jedi'			" jedi
-Plug 'integralist/vim-mypy'	
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'davidhalter/jedi'					" jedi
+Plug 'integralist/vim-mypy'				" linter
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocompletion
+
+" yaml
 Plug 'stephpy/vim-yaml'
 call plug#end()
 
@@ -30,23 +35,54 @@ set cmdheight=2
 set updatetime=500
 set shortmess+=c
 set signcolumn=yes
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
 
+syntax on
+colorscheme gruvbox
+
+" Airline
+let g:airline_theme='gruvbox'
+
+" yaml
 filetype plugin indent on
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 autocmd	CursorHold,CursorHoldI * update
 
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set colorcolumn=80
+    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set colorcolumn=0
+    autocmd WinLeave * set nocursorline
+augroup END
+
+" NERDTree 
+let g:NERDTreeChDirMode=2
+
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-t> :tabnew<CR>
+nnoremap <F10> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFocus<CR>
+nnoremap <S-F12> :tabedit ~/.config/nvim/init.vim<CR>
+nnoremap <S-Insert> "+gp
+inoremap <S-Insert> <C-c>"+gp
+noremap <C-w><b> :split<CR>
+noremap <C-Tab> :tabnext<CR>
+noremap <C-S-Tab> :tabprev<CR>
+
 " coc
 inoremap <silen><expr> <Tab>
-	\ pumvisible() ? "\<C-n>":
-	\ <SID>check_back_space() ? "\<Tab>" :
-	\ coc#refresh()
+            \ pumvisible() ? "\<C-n>":
+            \ <SID>check_back_space() ? "\<Tab>" :
+            \ coc#refresh()
 inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"
 function s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1] = ~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1] = ~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion.
@@ -72,11 +108,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 
 " Highlight symbol under cursor on CursorHold
@@ -90,11 +126,11 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd!
+    " Setup formatexpr specified filetype(s).
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
@@ -149,15 +185,4 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
-noremap <F10> :NERDTreeToggle<CR>
-noremap <F12> :tabedit ~/.config/nvim/init.vim<CR>
-
-noremap <C-w><b> :split<CR>
-
-noremap <C-Tab> :tabnext<CR>
-noremap <C-S-Tab> :tabprev<CR>
-
-
-colorscheme bold
-syntax on
 
