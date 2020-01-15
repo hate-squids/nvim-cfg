@@ -9,6 +9,7 @@ Plug 'aserebryakov/vim-todo-lists' 		" todo lists
 Plug 'tomtom/tcomment_vim'				" universal commenter
 Plug 'morhetz/gruvbox'					" color sheme
 Plug 'blueyed/vim-diminactive'          " inactive buffer shading
+Plug 'aquach/vim-http-client'           " http client
 " TODO: vim-sandwich
 
 " python
@@ -70,7 +71,8 @@ nnoremap <F10> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFocus<CR>
 nnoremap <S-F12> :tabedit ~/.config/nvim/init.vim<CR>
 nnoremap <S-Insert> "+gp
-inoremap <S-Insert> <C-c>"+gp
+inoremap <S-Insert> <C-c>"+gpA
+vnoremap <S-y> "+y
 noremap <C-w><b> :split<CR>
 noremap <C-Tab> :tabnext<CR>
 noremap <C-S-Tab> :tabprev<CR>
