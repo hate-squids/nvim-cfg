@@ -10,6 +10,7 @@ Plug 'tomtom/tcomment_vim'				" universal commenter
 Plug 'morhetz/gruvbox'					" color sheme
 Plug 'blueyed/vim-diminactive'          " inactive buffer shading
 Plug 'aquach/vim-http-client'           " http client
+Plug 'tveskag/nvim-blame-line'          " inline git blame
 " TODO: vim-sandwich
 
 " python
@@ -45,6 +46,9 @@ set expandtab
 syntax on
 colorscheme gruvbox
 
+" blameLine
+let g:blameLineVirtualTextPrefix="   | "
+
 " Airline
 let g:airline_theme='gruvbox'
 
@@ -62,8 +66,12 @@ augroup BgHighlight
     autocmd WinLeave * set nocursorline
 augroup END
 
+autocmd BufEnter * EnableBlameLine
+
+
 " NERDTree 
 let g:NERDTreeChDirMode=2
+let g:NERDTreeUseTCD=1
 
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-t> :tabnew<CR>
