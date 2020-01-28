@@ -10,8 +10,9 @@ Plug 'tomtom/tcomment_vim'				" universal commenter
 Plug 'morhetz/gruvbox'					" color sheme
 Plug 'blueyed/vim-diminactive'          " inactive buffer shading
 Plug 'aquach/vim-http-client'           " http client
-Plug 'tveskag/nvim-blame-line'          " inline git blame
-" TODO: vim-sandwich
+Plug 'tpope/vim-fugitive'               " git extras
+Plug 'cespare/vim-toml'
+Plug 'machakann/vim-sandwich'
 
 " python
 Plug 'Vimjas/vim-python-pep8-indent'	" pep-styled indents
@@ -21,6 +22,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocompletion
 
 " yaml
 Plug 'stephpy/vim-yaml'
+
 call plug#end()
 
 set number
@@ -35,7 +37,7 @@ set nobackup
 set nowritebackup
 set scrolloff=10
 set cmdheight=2
-set updatetime=500
+set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 set tabstop=4
@@ -45,9 +47,6 @@ set expandtab
 
 syntax on
 colorscheme gruvbox
-
-" blameLine
-let g:blameLineVirtualTextPrefix="   | "
 
 " Airline
 let g:airline_theme='gruvbox'
@@ -65,9 +64,6 @@ augroup BgHighlight
     autocmd WinLeave * set colorcolumn=0
     autocmd WinLeave * set nocursorline
 augroup END
-
-autocmd BufEnter * EnableBlameLine
-
 
 " NERDTree 
 let g:NERDTreeChDirMode=2
