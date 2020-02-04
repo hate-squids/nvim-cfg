@@ -65,6 +65,9 @@ augroup BgHighlight
     autocmd WinLeave * set nocursorline
 augroup END
 
+" http client response encoding
+let g:http_client_json_escape_utf=0
+
 " NERDTree 
 let g:NERDTreeChDirMode=2
 let g:NERDTreeUseTCD=1
