@@ -21,7 +21,6 @@ Plug 'davidhalter/jedi'					" jedi
 Plug 'integralist/vim-mypy'				" linter
 Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'roxma/nvim-yarp'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'} " autocompletion
 Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
@@ -31,11 +30,14 @@ Plug 'fatih/vim-go'
 " yaml
 Plug 'stephpy/vim-yaml'
 
+" logs
+Plug 'mtdl9/vim-log-highlighting'
+
 call plug#end()
 
 set number
 set linespace=3
-set guifont=Anonymous\ Pro:h12
+set guifont=Anonymous\ Pro:h14
 set cursorline
 set autowriteall
 set noautochdir
@@ -52,6 +54,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set linespace=2
 
 syntax on
 colorscheme gruvbox
@@ -96,7 +99,7 @@ let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
 noremap <C-g> :Ag 
-
+noremap <F3> :nohlsearch<CR>
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-t> :tabnew<CR>
 nnoremap <F10> :NERDTreeToggle<CR>
