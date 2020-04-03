@@ -2,7 +2,8 @@ call plug#begin()
 Plug 'scrooloose/nerdTree'				" NERDTree - file manager
 Plug 'bling/vim-airline'				" status line
 Plug 'rainglow/vim'						" alot of colorschemes
-Plug 'junegunn/fzf.vim'					" Fuzzy finder
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'                 " FZF
 Plug 'junegunn/limelight.vim'			" Partial document hilighting
 Plug 'jiangmiao/auto-pairs'				" matching paired quotes 
 Plug 'aserebryakov/vim-todo-lists' 		" todo lists
@@ -24,6 +25,9 @@ Plug 'roxma/nvim-yarp'
 Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+" golang
+Plug 'fatih/vim-go'
+
 " yaml
 Plug 'stephpy/vim-yaml'
 
@@ -31,7 +35,7 @@ call plug#end()
 
 set number
 set linespace=3
-set guifont=Anonymous\ Pro:h14
+set guifont=Anonymous\ Pro:h12
 set cursorline
 set autowriteall
 set noautochdir
@@ -70,6 +74,7 @@ let g:ale_lint_on_enter = 0
 
 set completeopt=menu,menuone,preview,noselect,noinsert
 set omnifunc=ale#completion#OmniFunc
+set omnifunc=syntaxcomplete#Complete
 
 augroup BgHighlight
     autocmd!
@@ -86,7 +91,11 @@ let g:http_client_json_escape_utf=0
 let g:NERDTreeChDirMode=2
 let g:NERDTreeUseTCD=1
 
-noremap <C-[> :Ag
+" vim-go
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
+noremap <C-g> :Ag 
 
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-t> :tabnew<CR>
