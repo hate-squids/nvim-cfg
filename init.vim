@@ -33,11 +33,17 @@ Plug 'stephpy/vim-yaml'
 " logs
 Plug 'mtdl9/vim-log-highlighting'
 
+" html
+Plug 'mattn/emmet-vim'
+
+" vue
+Plug 'posva/vim-vue'
+
 call plug#end()
 
 set number
 set linespace=3
-set guifont=Anonymous\ Pro:h14
+set guifont=Anonymous\ Pro:h12
 set cursorline
 set autowriteall
 set noautochdir
@@ -65,6 +71,12 @@ let g:airline_theme='gruvbox'
 " yaml
 filetype plugin indent on
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" vue
+autocmd FileType vue setlocal ts=2 sts=2 sw=2 expandtab
+
+" javascript
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
 
 autocmd	CursorHold,CursorHoldI * update
 
