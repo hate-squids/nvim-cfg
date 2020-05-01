@@ -1,18 +1,20 @@
 call plug#begin()
 Plug 'scrooloose/nerdTree'				" NERDTree - file manager
 Plug 'bling/vim-airline'				" status line
-Plug 'rainglow/vim'						" alot of colorschemes
 Plug 'junegunn/fzf.vim'					" Fuzzy finder
 Plug 'junegunn/limelight.vim'			" Partial document hilighting
 Plug 'jiangmiao/auto-pairs'				" matching paired quotes 
 Plug 'aserebryakov/vim-todo-lists' 		" todo lists
 Plug 'tomtom/tcomment_vim'				" universal commenter
-Plug 'morhetz/gruvbox'					" color sheme
 Plug 'blueyed/vim-diminactive'          " inactive buffer shading
 Plug 'aquach/vim-http-client'           " http client
 Plug 'tpope/vim-fugitive'               " git extras
 Plug 'machakann/vim-sandwich'           " suround plugin
 Plug 'rking/ag.vim'                     " recursive directory text search
+
+" themes
+Plug 'morhetz/gruvbox'					" color sheme
+Plug 'tomasr/molokai'
 
 " python
 Plug 'Vimjas/vim-python-pep8-indent'	" pep-styled indents
@@ -32,7 +34,7 @@ Plug 'mtdl9/vim-log-highlighting'
 call plug#end()
 
 set number
-set guifont=Anonymous\ Pro:h14
+set guifont=Hack:h11
 set cursorline
 set autowriteall
 set noautochdir
