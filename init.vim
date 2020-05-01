@@ -1,7 +1,8 @@
 call plug#begin()
 Plug 'scrooloose/nerdTree'				" NERDTree - file manager
 Plug 'bling/vim-airline'				" status line
-Plug 'junegunn/fzf.vim'					" Fuzzy finder
+Plug 'rainglow/vim'						" alot of colorschemes
+Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/limelight.vim'			" Partial document hilighting
 Plug 'jiangmiao/auto-pairs'				" matching paired quotes 
 Plug 'aserebryakov/vim-todo-lists' 		" todo lists
@@ -25,16 +26,26 @@ Plug 'roxma/nvim-yarp'
 Plug 'dense-analysis/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+" golang
+Plug 'fatih/vim-go'
+
 " yaml
 Plug 'stephpy/vim-yaml'
 
 " logs
 Plug 'mtdl9/vim-log-highlighting'
 
+" html
+Plug 'mattn/emmet-vim'
+
+" vue
+Plug 'posva/vim-vue'
+
 call plug#end()
 
 set number
 set guifont=Hack:h11
+set linespace=3
 set cursorline
 set autowriteall
 set noautochdir
@@ -63,6 +74,12 @@ let g:airline_theme='gruvbox'
 filetype plugin indent on
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
+" vue
+autocmd FileType vue setlocal ts=2 sts=2 sw=2 expandtab
+
+" javascript
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+
 autocmd	CursorHold,CursorHoldI * update
 
 let g:deoplete#enable_at_startup = 1
@@ -74,6 +91,7 @@ let g:ale_lint_on_enter = 0
 
 set completeopt=menu,menuone,preview,noselect,noinsert
 set omnifunc=ale#completion#OmniFunc
+set omnifunc=syntaxcomplete#Complete
 
 augroup BgHighlight
     autocmd!
@@ -90,7 +108,11 @@ let g:http_client_json_escape_utf=0
 let g:NERDTreeChDirMode=2
 let g:NERDTreeUseTCD=1
 
-noremap <C-o> :Ag 
+" vim-go
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+
+noremap <C-g> :Ag 
 noremap <F3> :nohlsearch<CR>
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-t> :tabnew<CR>
